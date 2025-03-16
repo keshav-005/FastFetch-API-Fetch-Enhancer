@@ -1,0 +1,47 @@
+{
+  "name": "@hoangsonw/fast-fetch",
+  "displayName": "Fast Fetch Smart API Fetcher",
+  "version": "1.0.0",
+  "description": "A smarter fetch() wrapper with auto-retry, deduplication, and minimal boilerplate.",
+  "main": "dist/index.js",
+  "types": "index.d.ts",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest --coverage",
+    "prepublishOnly": "npm run build",
+    "demo": "node __tests__/demo.js",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,css,scss,md,html}\""
+  },
+  "keywords": [
+    "fetch",
+    "fastfetch",
+    "retry",
+    "deduplication",
+    "http",
+    "api",
+    "typescript"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/fast-fetch.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/fast-fetch/issues"
+  },
+  "homepage": "https://github.com/yourusername/fast-fetch#readme",
+  "license": "MIT",
+  "author": "Son Nguyen",
+  "devDependencies": {
+    "@types/jest": "^29.0.0",
+    "jest": "^29.0.0",
+    "ts-jest": "^29.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@hoangsonw/fast-fetch": "^1.0.0",
+    "cross-fetch": "^4.1.0",
+    "prettier": "^3.5.3"
+  }
+}
