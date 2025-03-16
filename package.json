@@ -24,12 +24,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/fast-fetch.git"
+    "url": "https://github.com/hoangsonww/FastFetch-API-Fetch-Enhancer.git"
   },
   "bugs": {
-    "url": "https://github.com/yourusername/fast-fetch/issues"
+    "url": "https://github.com/hoangsonww/FastFetch-API-Fetch-Enhancer/issues"
   },
-  "homepage": "https://github.com/yourusername/fast-fetch#readme",
+  "homepage": "https://github.com/hoangsonww/FastFetch-API-Fetch-Enhancer#readme",
   "license": "MIT",
   "author": "Son Nguyen",
   "devDependencies": {
