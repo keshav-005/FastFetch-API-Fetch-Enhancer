@@ -3,7 +3,7 @@ import fetch from "cross-fetch";
 /**
  * Options for controlling FastFetch behavior:
  * - `retries` -> number of times to retry on failure
- * - `retryDelay` -> wait in ms before next retry
+ * - `retryDelay` -> base delay in ms before next retry (will be multiplied exponentially)
  * - `deduplicate` -> whether to merge identical requests in-flight
  * - `shouldRetry` -> custom logic to decide if we retry
  */
@@ -29,7 +29,7 @@ function makeSignature(input: RequestInfo, init?: RequestInit): string {
     url: typeof input === "string" ? input : (input as Request).url,
     method: init?.method ?? "GET",
     headers: init?.headers ?? {},
-    body: init?.body ?? null
+    body: init?.body ?? null,
   };
   return JSON.stringify(normalized);
 }
@@ -38,66 +38,88 @@ function makeSignature(input: RequestInfo, init?: RequestInit): string {
  * Sleep helper for retryDelay
  */
 function sleep(ms: number) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 /**
  * FastFetch main function
- * - Retries on error
+ * - Retries on error with exponential backoff
  * - Deduplicates in-flight requests if deduplicate = true
  */
 export async function fastFetch(
   input: RequestInfo,
-  init?: RequestInit & FastFetchOptions
+  init?: RequestInit & FastFetchOptions,
 ): Promise<Response> {
   const {
     retries = 0,
     retryDelay = 1000,
     deduplicate = true,
-    shouldRetry
+    shouldRetry,
   } = init || {};
+
+  console.log("[FastFetch] Starting request for:", input);
 
   // If deduplicating, check if a matching in-flight request exists
   let signature = "";
   if (deduplicate) {
     signature = makeSignature(input, init);
     if (inFlightMap.has(signature)) {
+      console.log(
+        "[FastFetch] Found in-flight request for signature:",
+        signature,
+      );
       return inFlightMap.get(signature)!;
     }
   }
 
-  // We'll build a promise chain that tries up to `retries + 1` times
+  // Build a promise chain that tries up to retries + 1 times with exponential backoff
   let attempt = 0;
   let promise = (async function fetchWithRetry(): Promise<Response> {
     while (true) {
       try {
         attempt++;
+        console.log(`[FastFetch] Attempt #${attempt} for:`, input);
         const response = await fetch(input, init);
-        // If success status or we don't want to parse error, just return it
         if (!response.ok && shouldRetry) {
-          // If user-defined logic says "retry again," we do so
           const doRetry = shouldRetry(response, attempt);
+          console.log(
+            `[FastFetch] Response not ok (status: ${response.status}). Retry decision: ${doRetry}`,
+          );
           if (doRetry && attempt <= retries) {
-            await sleep(retryDelay);
+            const delay = retryDelay * Math.pow(2, attempt - 1);
+            console.log(
+              `[FastFetch] Waiting ${delay}ms (exponential backoff) before retrying...`,
+            );
+            await sleep(delay);
             continue; // try again
           }
         }
+        console.log(`[FastFetch] Request succeeded on attempt #${attempt}`);
         return response;
       } catch (error: any) {
-        // If fetch truly fails (like network error), see if we can retry
+        console.log(`[FastFetch] Caught error on attempt #${attempt}:`, error);
         if (shouldRetry) {
           const doRetry = shouldRetry(error, attempt);
+          console.log(`[FastFetch] Retry decision based on error: ${doRetry}`);
           if (doRetry && attempt <= retries) {
-            await sleep(retryDelay);
+            const delay = retryDelay * Math.pow(2, attempt - 1);
+            console.log(
+              `[FastFetch] Waiting ${delay}ms (exponential backoff) before retrying after error...`,
+            );
+            await sleep(delay);
             continue;
           }
         } else {
-          // By default, if not a 2xx response or network error, we only retry up to `retries`
           if (attempt <= retries) {
-            await sleep(retryDelay);
+            const delay = retryDelay * Math.pow(2, attempt - 1);
+            console.log(
+              `[FastFetch] Retrying attempt #${attempt} after error. Waiting ${delay}ms...`,
+            );
+            await sleep(delay);
             continue;
           }
         }
+        console.log("[FastFetch] No more retries. Throwing error.");
         throw error;
       }
     }
@@ -106,6 +128,10 @@ export async function fastFetch(
   // If deduplicating, store in the map so subsequent calls get the same promise
   if (deduplicate) {
     inFlightMap.set(signature, promise);
+    console.log(
+      "[FastFetch] Stored in-flight request with signature:",
+      signature,
+    );
   }
 
   try {
@@ -115,6 +141,10 @@ export async function fastFetch(
     // Once done (success or fail), remove from inFlightMap
     if (deduplicate) {
       inFlightMap.delete(signature);
+      console.log(
+        "[FastFetch] Removed in-flight record for signature:",
+        signature,
+      );
     }
   }
 }

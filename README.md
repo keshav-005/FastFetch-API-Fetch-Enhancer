@@ -93,7 +93,7 @@ fastFetch("https://pokeapi.co/api/v2/pokemon/ditto", {
     }
     // For network errors or other errors, retry
     return true;
-  }
+  },
 })
   .then((res) => res.json())
   .then((data) => console.log("FastFetch data:", data))
@@ -114,7 +114,8 @@ const api = axios.create({ baseURL: "https://pokeapi.co/api/v2" });
 // Register the Axios instance with FastFetch
 registerAxios(api);
 
-api.get("/pokemon/ditto")
+api
+  .get("/pokemon/ditto")
   .then((response) => {
     console.log("Axios fetched data:", response.data);
   })
@@ -128,6 +129,7 @@ api.get("/pokemon/ditto")
 ### `fastFetch(input: RequestInfo, init?: RequestInit & FastFetchOptions): Promise<Response>`
 
 - **Parameters:**
+
   - `input`: URL or Request object.
   - `init`: An object that extends standard `RequestInit` with additional options:
     - `retries`: _number_ — Number of retry attempts (default: `0`).
@@ -171,7 +173,7 @@ fastFetch("https://example.com/api/data", {
       return errorOrResponse.status >= 500;
     }
     return true;
-  }
+  },
 })
   .then((res) => res.json())
   .then((data) => console.log("Custom retry data:", data))
@@ -203,6 +205,7 @@ Promise.all([fastFetch(url), fastFetch(url)])
 FastFetch comes with a Jest test suite. To run tests:
 
 1. **Install dependencies:**
+
    ```bash
    npm install
    ```

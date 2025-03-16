@@ -16,7 +16,7 @@ describe("FastFetch Basic Tests", () => {
 
     const [res1, res2] = await Promise.all([
       fastFetch(POKE_API),
-      fastFetch(POKE_API)
+      fastFetch(POKE_API),
     ]);
     const time = Date.now() - start;
 

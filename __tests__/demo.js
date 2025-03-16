@@ -14,17 +14,22 @@ fastFetch("https://pokeapi.co/api/v2/pokemon/ditto", {
 
     // If it's a network or other error
     return true;
-  }
+  },
 })
-  .then(res => res.json())
-  .then(data => {
+  .then((res) => res.json())
+  .then((data) => {
     console.log("FastFetch data:", data);
   })
-  .catch(err => {
+  .catch((err) => {
     console.error("FastFetch error:", err);
   });
 
 // Should output something like:
+// [FastFetch] Starting request for: https://pokeapi.co/api/v2/pokemon/ditto
+// [FastFetch] Attempt #1 for: https://pokeapi.co/api/v2/pokemon/ditto
+// [FastFetch] Stored in-flight request with signature: {"url":"https://pokeapi.co/api/v2/pokemon/ditto","method":"GET","headers":{},"body":null}
+// [FastFetch] Request succeeded on attempt #1
+// [FastFetch] Removed in-flight record for signature: {"url":"https://pokeapi.co/api/v2/pokemon/ditto","method":"GET","headers":{},"body":null}
 // FastFetch data: {
 //   abilities: [
 //     { ability: [Object], is_hidden: false, slot: 1 },

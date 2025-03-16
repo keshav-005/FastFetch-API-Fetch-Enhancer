@@ -11,5 +11,5 @@ export interface FastFetchOptions {
 
 export declare function fastFetch(
   input: RequestInfo,
-  init?: RequestInit & FastFetchOptions
+  init?: RequestInit & FastFetchOptions,
 ): Promise<Response>;
