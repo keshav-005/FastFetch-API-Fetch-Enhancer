@@ -5,7 +5,7 @@ export interface FastFetchOptions {
   retryDelay?: number;
   /** Deduplicate in-flight requests with same signature (default: true) */
   deduplicate?: boolean;
-  /** Optional function to decide if a retry is needed based on status, error, etc. */
+  /** Optional function to decide if a retry is needed based on status, error, etc.*/
   shouldRetry?: (error: any, attempt: number) => boolean;
 }
 
