@@ -1,4 +1,4 @@
-# FastFetch API Fetch Enhancer 🚀
+# FastFetch API Fetch Enhancer 
 
 ## Description
 FastFetch is an NPM package designed to enhance the `fetch()` function by providing a smarter wrapper with features like auto-retry, deduplication, and minimal boilerplate for efficient API requests. With FastFetch, you can eliminate redundant API calls and seamlessly handle failures thanks to the built-in retry logic using exponential backoff strategy.
