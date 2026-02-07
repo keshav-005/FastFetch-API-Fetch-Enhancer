@@ -25,7 +25,7 @@ describe("FastFetch Basic Tests", () => {
     expect((await res2.clone().json()).name).toBe("ditto");
 
     // We didn't do extra requests, so hopefully we didn't wait twice
-    // Not a perfect check, but indicates we merged calls.
+    // Not a perfect check, but indicates we merged calls ..
     expect(time).toBeLessThan(2000);
   });
 });
