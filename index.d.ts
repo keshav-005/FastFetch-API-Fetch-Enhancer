@@ -1,5 +1,5 @@
 export interface FastFetchOptions {
-  /** Number of retries if fetch fails (default: 0 = no retry) */
+  /** Number of retries if fetch fails (default: 0 = no retry ;) */
   retries?: number;
   /** Time to wait (ms) before retry (default: 1000 ms) */
   retryDelay?: number;
