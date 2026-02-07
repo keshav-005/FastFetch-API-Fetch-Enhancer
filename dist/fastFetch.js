@@ -1,6 +1,6 @@
 import fetch from "cross-fetch";
 /**
- * Ongoing in-flight requests for deduplication:
+ * Ongoing in-flight requests for deduplication:.
  * Keyed by a stable signature of { url, method, headers, body }
  */
 const inFlightMap = new Map();
