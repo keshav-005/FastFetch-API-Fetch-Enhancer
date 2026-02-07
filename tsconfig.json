@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    // NodeNext for modern ESM
+    // NodeNext for modern ESM.
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "target": "ES2020",
