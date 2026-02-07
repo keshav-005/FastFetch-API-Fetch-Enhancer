@@ -7,7 +7,7 @@ fastFetch("https://pokeapi.co/api/v2/pokemon/ditto", {
   shouldRetry: (errorOrResponse, attempt) => {
     console.log(`Retry attempt #${attempt}`);
 
-    // If it's a Response object (failed request)
+    // If it's a Response object (failed request.)
     if (errorOrResponse instanceof Response) {
       return errorOrResponse.status >= 500; // Retry on 5xx errors
     }
