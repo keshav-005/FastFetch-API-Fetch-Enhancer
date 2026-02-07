@@ -45,3 +45,6 @@
     "prettier": "^3.5.3"
   }
 }
+{
+  "_comment": "This is a comment about the API endpoint",
+}   
